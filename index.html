@@ -3,43 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HS PVC ENTERPRISE</title>
+    <title>HS PVC Enterprise</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
-    <!-- Header -->
     <header>
-        <h1>HS PVC ENTERPRISE</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="header-container">
+            <h1>HS PVC Enterprise</h1>
+            <button onclick="scrollToProducts()">Shop Now</button>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <h2>Quality PVC Products for All Needs</h2>
-        <button onclick="scrollToProducts()">Shop Now</button>
-    </section>
-
-    <!-- Product Listings -->
-    <section id="products" class="products">
-        <h2>Our Products</h2>
-        <div class="product-container">
-            <!-- Product Cards will be added via JS -->
+    <!-- Hero Section Added Here -->
+    <section id="hero">
+        <div class="hero-content">
+            <h2>Welcome to HS PVC Enterprise</h2>
+            <p>Premium Cold GSM Products at Unbeatable Prices</p>
+            <button onclick="scrollToProducts()">Explore Now</button>
         </div>
     </section>
 
-    <!-- Inquiry Form -->
-    <section id="contact" class="contact">
-        <h2>Submit Inquiry</h2>
+    <section id="products">
+        <h2>Our Products</h2>
+        <div class="product-container"></div>
+    </section>
+    <section id="inquiry">
+        <h2>Send Inquiry</h2>
         <form id="inquiry-form">
-            <input type="text" id="name" placeholder="Your Name" required>
-            <input type="email" id="email" placeholder="Your Email" required>
-            <textarea id="items" placeholder="Selected Items" readonly></textarea>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="items">Items:</label>
+            <textarea id="items" name="items" readonly></textarea>
             <button type="submit">Send Inquiry</button>
         </form>
     </section>
