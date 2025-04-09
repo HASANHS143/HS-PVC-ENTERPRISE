@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HS PVC ENTERPRISE</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>HS PVC ENTERPRISE</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h2>Quality PVC Products for All Needs</h2>
+        <button onclick="scrollToProducts()">Shop Now</button>
+    </section>
+
+    <!-- Product Listings -->
+    <section id="products" class="products">
+        <h2>Our Products</h2>
+        <div class="product-container">
+            <!-- Product Cards will be added via JS -->
+        </div>
+    </section>
+
+    <!-- Inquiry Form -->
+    <section id="contact" class="contact">
+        <h2>Submit Inquiry</h2>
+        <form id="inquiry-form">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="items" placeholder="Selected Items" readonly></textarea>
+            <button type="submit">Send Inquiry</button>
+        </form>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
