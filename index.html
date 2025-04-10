@@ -6,17 +6,25 @@
     <title>HS PVC Enterprise</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <!-- Optional: Include Font Awesome for a basket icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
         <div class="header-container">
-            <h1>HS PVC Enterprise</h1>
-            <button onclick="scrollToProducts()">Shop Now</button>
-            <!-- Overlay Moved Here -->
-            <div id="construction-overlay">
-                <p>This website is still under construction</p>
+            <div class="header-top">
+                <h1>HS PVC Enterprise</h1>
+                <div class="basket-container">
+                    <img src="https://res.cloudinary.com/dxzpud3hq/image/upload/v1744278059/BasketLogo-removebg-preview_n1eaw0.png" alt="Basket" class="basket-logo" onclick="showCart()">
+                    <span id="cart-count" class="cart-count">0</span>
+                </div>
             </div>
+            <nav class="header-nav">
+                <a href="#hero" onclick="return false;">Home</a> <!-- No action when clicked -->
+                <a href="#products" onclick="showSection('products')">Products</a>
+                <a href="#about-us" onclick="showSection('about-us')">About Us</a>
+                <a href="#inquiry" onclick="showContactOverlay()">Contact</a>
+            </nav>
         </div>
     </header>
 
@@ -30,25 +38,53 @@
 
     <section id="products">
         <h2>Our Products</h2>
-        <div class="product-container"></div>
+        <div class="filter-container">
+            <label for="product-filter">Filter by Category:</label>
+            <select id="product-filter" onchange="filterProducts()">
+                <option value="all">All</option>
+                <option value="Cold Lamination">Cold Lamination</option>
+                <option value="Hot Lamination">Hot Lamination</option>
+                <option value="Vinyl">Vinyl</option>
+                <option value="Backlit">Backlit</option>
+                <option value="StarFlex">StarFlex</option>
+                <option value="Black">Black</option>
+                <option value="Ink">Ink</option>
+                <option value="Solvent">Solvent</option>
+                <option value="Foam Sheets">Foam Sheets</option>
+            </select>
+        </div>
+        <div class="product-container" id="product-container"></div>
+    </section>
+    <section id="about-us">
+        <h2>About Us</h2>
+        <p>Content for About Us section coming soon.</p>
     </section>
     <section id="inquiry">
-        <h2>Send Inquiry</h2>
+        <h2>Data & Selected Products</h2>
         <form id="inquiry-form">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" required placeholder="Enter 10-digit number">
             <label for="items">Items:</label>
             <textarea id="items" name="items" readonly></textarea>
-            <button type="submit">Send Inquiry</button>
+            <button type="submit" id="submit-btn">Send via WhatsApp</button>
         </form>
     </section>
+
+    <!-- Contact Overlay -->
+    <div id="contact-overlay" class="overlay">
+        <div class="overlay-content">
+            <span class="close-btn" onclick="hideContactOverlay()">×</span>
+            <h2>Contact Us</h2>
+            <p><strong>Contact Us Through Mail:</strong> hspvcenterprise@gmail.com</p>
+            <p><strong>Mobile Number:</strong> 8143254224</p>
+        </div>
+    </div>
 
     <footer>
         <div class="footer-container">
             <p>© 2025 HS PVC Enterprise. All Rights Reserved.</p>
-            <p>Contact: <a href="mailto:hasanconq@gmail.com">hasanconq@gmail.com</a> | +91-8143254224</p>
         </div>
     </footer>
 

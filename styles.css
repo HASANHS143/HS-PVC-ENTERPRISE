@@ -15,7 +15,7 @@ body {
 /* Header */
 header {
     background-color: #2874F0;
-    padding: 15px 20px 50px; /* Increased padding-bottom to fit overlay */
+    padding: 15px 20px;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -25,42 +25,110 @@ header {
 .header-container {
     max-width: 1200px;
     margin: 0 auto;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+}
+
+/* Top Row: Title and Basket */
+.header-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative; /* Make container a positioning context for overlay */
+    margin-bottom: 15px;
 }
 
 header h1 {
     color: #FFFFFF;
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 700;
+    margin: 0;
+    padding-left: 10px;
 }
 
-header button {
-    background-color: #FFE500;
-    color: #212121;
-    border: none;
-    padding: 10px 20px;
+.basket-container {
+    position: relative;
+    padding-right: 10px;
+}
+
+.basket-logo {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.basket-logo:hover {
+    transform: scale(1.1);
+}
+
+/* Cart Count */
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #FF0000;
+    color: #FFFFFF;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Header Navigation */
+.header-nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 40px;
+}
+
+.header-nav a {
+    color: #FFFFFF;
     font-size: 16px;
     font-weight: 500;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    text-decoration: none;
+    transition: color 0.3s;
+    padding: 5px 10px;
 }
 
-header button:hover {
-    background-color: #FFD700;
+.header-nav a:hover {
+    color: #FFE500;
 }
 
-/* Hero Section */
+/* Hero Section with Your Image Background */
 #hero {
-    background: linear-gradient(135deg, #2874F0 0%, #1A5ACF 100%);
+    background-image: url('https://res.cloudinary.com/dxzpud3hq/image/upload/v1744269105/HomePage_qb1hp7.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: #FFFFFF;
     text-align: center;
     padding: 60px 20px;
     position: relative;
     overflow: hidden;
+}
+
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
 }
 
 .hero-content h2 {
@@ -94,7 +162,7 @@ header button:hover {
     transform: scale(1.05);
 }
 
-/* Animations */
+/* Animations for Hero */
 @keyframes fadeInDown {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -124,6 +192,32 @@ header button:hover {
     color: #2874F0;
     margin-bottom: 20px;
     text-align: center;
+}
+
+.filter-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.filter-container label {
+    font-size: 16px;
+    color: #212121;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.filter-container select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #878787;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s;
+    cursor: pointer;
+}
+
+.filter-container select:focus {
+    border-color: #2874F0;
 }
 
 .product-container {
@@ -167,7 +261,37 @@ header button:hover {
     margin-bottom: 10px;
 }
 
-.product-card button {
+/* Quantity Container */
+.quantity-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.quantity-btn {
+    background-color: #878787;
+    color: #FFFFFF;
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.quantity-btn:hover {
+    background-color: #666666;
+}
+
+.quantity-display {
+    font-size: 14px;
+    font-weight: 500;
+    min-width: 20px;
+    text-align: center;
+}
+
+.buy-btn {
     background-color: #2874F0;
     color: #FFFFFF;
     border: none;
@@ -178,8 +302,27 @@ header button:hover {
     transition: background-color 0.3s;
 }
 
-.product-card button:hover {
+.buy-btn:hover {
     background-color: #1A5ACF;
+}
+
+/* About Us Section (Placeholder) */
+#about-us {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+#about-us h2 {
+    font-size: 28px;
+    color: #2874F0;
+    margin-bottom: 20px;
+}
+
+#about-us p {
+    font-size: 16px;
+    color: #212121;
 }
 
 /* Inquiry Section */
@@ -226,6 +369,10 @@ header button:hover {
     border-color: #2874F0;
 }
 
+#inquiry-form input[type="tel"] {
+    font-family: 'Roboto', sans-serif;
+}
+
 #inquiry-form textarea {
     resize: none;
     height: 100px;
@@ -266,44 +413,38 @@ footer {
     margin: 5px 0;
 }
 
-.footer-container a {
-    color: #FFE500;
-    text-decoration: none;
-    transition: color 0.3s;
+/* Contact Overlay */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 4000;
+    justify-content: center;
+    align-items: center;
 }
 
-.footer-container a:hover {
-    color: #FFD700;
+.overlay-content {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 400px;
+    position: relative;
 }
 
-/* Construction Overlay with Animation */
-#construction-overlay {
+.close-btn {
     position: absolute;
-    bottom: 5px; /* Places it just below the header content */
-    left: 0; /* Start within the container */
-    width: 100%; /* Full width of the header container */
-    text-align: center; /* Center the text within the overlay */
-    z-index: 1500; /* Above other header content but within header */
-    animation: slideRightToLeft 5s linear infinite; /* Slides right to left */
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #212121;
 }
 
-#construction-overlay p {
-    color: #FF0000; /* Red text */
-    font-size: 14px; /* Smaller to fit below header */
-    font-weight: 500;
-    margin: 0;
-    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
-    display: inline-block; /* Wraps text tightly */
-    padding: 5px 10px; /* Smaller padding */
-    border-radius: 4px;
-}
-
-/* Animation for sliding from right to left within header */
-@keyframes slideRightToLeft {
-    0% {
-        transform: translateX(50%); /* Start off-screen to the right */
-    }
-    100% {
-        transform: translateX(-50%); /* Move off-screen to the left */
-    }
+.close-btn:hover {
+    color: #FF0000;
 }
