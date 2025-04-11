@@ -38,6 +38,21 @@ const products = [
     // Add more products with appropriate categories and images
 ];
 
+function searchProducts() {
+    const searchTerm = document.getElementById('product-search').value.toLowerCase();
+    const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(searchTerm)
+    );
+    displayProducts(filteredProducts);
+}
+
+document.querySelectorAll('.faq-item h3').forEach(item => {
+    item.addEventListener('click', () => {
+        const p = item.nextElementSibling;
+        p.style.display = p.style.display === 'block' ? 'none' : 'block';
+    });
+});
+
 // Function to display products
 function displayProducts(filteredProducts = products) {
     const productContainer = document.getElementById('product-container');

@@ -13,7 +13,7 @@
     <header>
         <div class="header-container">
             <div class="header-top">
-                <h1>HS PVC Enterprise</h1>
+                <img src="https://res.cloudinary.com/dxzpud3hq/image/upload/v1744372712/Logo_bmyiqb.png" alt="HS PVC Enterprise Logo" class="logo">
                 <div class="basket-container">
                     <img src="https://res.cloudinary.com/dxzpud3hq/image/upload/v1744278059/BasketLogo-removebg-preview_n1eaw0.png" alt="Basket" class="basket-logo" onclick="showCart()">
                     <span id="cart-count" class="cart-count">0</span>
@@ -24,6 +24,7 @@
                 <a href="#products" onclick="showSection('products')">Products</a>
                 <a href="#about-us" onclick="showAboutOverlay(event)">About Us</a> <!-- Trigger overlay -->
                 <a href="#" onclick="showContactOverlay(); return false;">Contact</a>
+                <a href="#faq" onclick="showSection('faq')">FAQ</a>
             </nav>
         </div>
     </header>
@@ -31,11 +32,13 @@
     <section id="hero">
         <div class="hero-content">
             <h2>Welcome to HS PVC Enterprise</h2>
-            <p>Premium Cold GSM Products at Unbeatable Prices</p>
+            <p>Premium Cold/Hot Lamination GSM Products at Unbeatable Prices</p>
             <button onclick="scrollToProducts()">Explore Now</button>
         </div>
     </section>
-
+    <div class="search-container">
+        <input type="text" id="product-search" placeholder="Search products..." onkeyup="searchProducts()">
+    </div>
     <section id="products">
         <h2>Our Products</h2>
         <div class="filter-container">
@@ -54,6 +57,69 @@
             </select>
         </div>
         <div class="product-container" id="product-container"></div>
+    </section>
+    <section id="faq">
+        <h2>FAQ</h2>
+        <div class="faq-item">
+            <h3>What types of products do you offer?</h3>
+            <p>We offer a wide range of premium lamination and printing materials, including Cold Lamination (e.g., 200 GSM, 240 GSM), Hot Lamination (e.g., 240 GSM), Vinyl, Backlit films, StarFlex banners, Black films, Inks, Solvents, and Foam Sheets. Check our Products section for the full list and specifications.</p>
+        </div>
+        <div class="faq-item">
+            <h3>What are the shipping options and delivery times?</h3>
+            <p>We provide shipping across India and select international locations. Delivery typically takes 2-5 business days within India, depending on your location. International shipping may take 7-14 days. Shipping costs and estimated delivery times are calculated at checkout based on your address.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Do you offer bulk discounts?</h3>
+            <p>Yes, we offer discounts for bulk orders. Please contact us at hspvcenterprise@gmail.com or call +91 8143254224 with your requirements, and we’ll provide a customized quote.</p>
+        </div>
+        <div class="faq-item">
+            <h3>What payment methods do you accept?</h3>
+            <p>We accept payments via bank transfer, UPI, and major credit/debit cards. You can also use cash on delivery (COD) for orders within India, subject to availability in your area. All transactions are secure and encrypted.</p>
+        </div>
+        <div class="faq-item">
+            <h3>What is your return and refund policy?</h3>
+            <p>We accept returns within 7 days of delivery if the product is defective or damaged, provided it is unused and in its original packaging. Please contact us with your order details to initiate a return. Refunds will be processed within 5-7 business days after inspection. Shipping costs for returns are non-refundable.</p>
+        </div>
+        <div class="faq-item">
+            <h3>How do I know the right product for my project?</h3>
+            <p>Our product categories (e.g., Cold Lamination for flexible applications, Hot Lamination for durability) are designed for specific uses. If unsure, refer to the product descriptions on our website or reach out to us at hspvcenterprise@gmail.com for personalized advice.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Are your products environmentally friendly?</h3>
+            <p>We are committed to sustainability and use materials that minimize environmental impact where possible. Our Foam Sheets and certain inks are designed with eco-friendly processes, but we recommend checking individual product details for specifics.</p>
+        </div>
+        <div class="faq-item">
+            <h3>How can I track my order?</h3>
+            <p>Once your order is shipped, we will send you a tracking number via email or WhatsApp. You can use this number on our partnered courier’s website to track your shipment.</p>
+        </div>
+        <div class="faq-item">
+            <h3>What should I do if my product arrives damaged?</h3>
+            <p>We apologize for any inconvenience. Please take photos of the damaged product and packaging, then email them to hspvcenterprise@gmail.com within 48 hours of delivery. We will arrange a replacement or refund as per our policy.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Do you provide installation or usage guidance?</h3>
+            <p>We provide basic usage instructions with each product. For detailed guidance or installation support, contact our team at +91 8143254224, and we’ll assist you or connect you with a local expert.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Can I cancel or modify my order after placement?</h3>
+            <p>Orders can be canceled or modified within 24 hours of placement, provided they haven’t been processed for shipping. Contact us immediately at hspvcenterprise@gmail.com or +91 8143254224 to request changes.</p>
+        </div>
+        <div class="faq-item">
+            <h3>What is the minimum order quantity?</h3>
+            <p>There is no minimum order quantity for most products. However, bulk orders may qualify for discounts. Contact us for more details on large-scale purchases.</p>
+        </div>
+        <div class="faq-item">
+            <h3>How do I clean or maintain laminated products?</h3>
+            <p>Use a soft, damp cloth with mild soap to clean laminated surfaces. Avoid abrasive materials or harsh chemicals, as they may damage the finish. Refer to the product-specific care instructions included with your order.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Are your prices inclusive of taxes?</h3>
+            <p>Prices listed on the website are exclusive of taxes. The final amount, including applicable GST, will be displayed at checkout based on your location.</p>
+        </div>
+        <div class="faq-item">
+            <h3>What should I do if I have a question not listed here?</h3>
+            <p>Feel free to reach out to us via email at hspvcenterprise@gmail.com or call us at +91 8143254224. Our team is happy to assist you with any queries!</p>
+        </div>
     </section>
     <section id="about-us">
         <!-- Placeholder section, content now in overlay -->

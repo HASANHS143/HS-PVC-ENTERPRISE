@@ -12,6 +12,12 @@ body {
     line-height: 1.6;
 }
 
+.logo {
+    height: 50px; /* Adjust size as needed */
+    width: auto;
+    margin-right: 10px;
+}
+
 /* Header */
 header {
     background-color: #2874F0;
@@ -103,6 +109,18 @@ header h1 {
 }
 
 /* Hero Section with Your Image Background */
+#hero {
+    position: relative;
+    overflow: hidden;
+}
+.hero-content h2 {
+    animation: fadeInDown 1.5s ease-in-out infinite alternate;
+}
+@keyframes fadeInDown {
+    from { opacity: 0.7; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 #hero {
     background-image: url('https://res.cloudinary.com/dxzpud3hq/image/upload/v1744269105/HomePage_qb1hp7.png');
     background-size: cover;
@@ -467,4 +485,49 @@ footer {
 
 .close-btn:hover {
     color: #FF0000;
+}
+.search-container {
+    text-align: center;
+    margin: 20px 0;
+}
+#product-search {
+    padding: 8px;
+    font-size: 14px;
+    width: 200px;
+    border: 1px solid #878787;
+    border-radius: 4px;
+}
+/* FAQ Section */
+#faq {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#faq h2 {
+    font-size: 28px;
+    color: #2874F0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.faq-item {
+    margin-bottom: 15px;
+}
+
+.faq-item h3 {
+    font-size: 18px;
+    color: #212121;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.faq-item p {
+    font-size: 16px;
+    color: #666666;
+    line-height: 1.6;
+    padding-left: 20px;
 }
