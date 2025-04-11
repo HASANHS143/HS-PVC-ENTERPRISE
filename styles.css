@@ -12,6 +12,7 @@ body {
     line-height: 1.6;
 }
 
+/* Logo */
 .logo {
     height: 50px; /* Adjust size as needed */
     width: auto;
@@ -113,9 +114,11 @@ header h1 {
     position: relative;
     overflow: hidden;
 }
+
 .hero-content h2 {
     animation: fadeInDown 1.5s ease-in-out infinite alternate;
 }
+
 @keyframes fadeInDown {
     from { opacity: 0.7; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -486,17 +489,27 @@ footer {
 .close-btn:hover {
     color: #FF0000;
 }
+
+/* Search Container */
 .search-container {
     text-align: center;
     margin: 20px 0;
 }
+
 #product-search {
     padding: 8px;
     font-size: 14px;
     width: 200px;
     border: 1px solid #878787;
     border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s;
 }
+
+#product-search:focus {
+    border-color: #2874F0;
+}
+
 /* FAQ Section */
 #faq {
     max-width: 1200px;
@@ -523,6 +536,7 @@ footer {
     color: #212121;
     font-weight: 500;
     margin-bottom: 5px;
+    cursor: pointer; /* Indicate clickable area */
 }
 
 .faq-item p {
@@ -530,4 +544,9 @@ footer {
     color: #666666;
     line-height: 1.6;
     padding-left: 20px;
+    display: none; /* Hidden by default for accordion */
+}
+
+.faq-item.active p {
+    display: block; /* Show when active */
 }
