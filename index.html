@@ -22,7 +22,7 @@
             <nav class="header-nav">
                 <a href="#hero" onclick="return false;">Home</a> <!-- No action when clicked -->
                 <a href="#products" onclick="showSection('products')">Products</a>
-                <a href="#about-us" onclick="showSection('about-us')">About Us</a>
+                <a href="#about-us" onclick="showAboutOverlay(event)">About Us</a> <!-- Trigger overlay -->
                 <a href="#inquiry" onclick="showContactOverlay()">Contact</a>
             </nav>
         </div>
@@ -31,7 +31,7 @@
     <section id="hero">
         <div class="hero-content">
             <h2>Welcome to HS PVC Enterprise</h2>
-            <p>Premium Cold/Hot Lamination GSM Products at Unbeatable Prices</p>
+            <p>Premium Cold GSM Products at Unbeatable Prices</p>
             <button onclick="scrollToProducts()">Explore Now</button>
         </div>
     </section>
@@ -56,8 +56,7 @@
         <div class="product-container" id="product-container"></div>
     </section>
     <section id="about-us">
-        <h2>About Us</h2>
-        <p>Content for About Us section coming soon.</p>
+        <!-- Placeholder section, content now in overlay -->
     </section>
     <section id="inquiry">
         <h2>Data & Selected Products</h2>
@@ -72,13 +71,28 @@
         </form>
     </section>
 
+    <!-- About Us Overlay -->
+    <div id="about-overlay" class="overlay">
+        <div class="overlay-content">
+            <span class="close-btn" onclick="hideAboutOverlay()">×</span>
+            <u><h2>About Us</h2></u>
+            <p>Welcome to HS PVC Enterprise – Your Trusted Partner in Lamination and Printing Solutions</p>
+            <p>At HS PVC Enterprise, we are passionate about delivering top-quality lamination and printing materials to meet the diverse needs of our customers. Established with a vision to revolutionize the industry, we specialize in premium Cold and Hot Lamination GSM products, Vinyl, Backlit films, StarFlex banners, Inks, Solvents, and Foam Sheets, all offered at unbeatable prices. Our journey began with a commitment to excellence, and today, we proudly serve businesses and individuals across the region with innovative solutions tailored to their requirements.</p>
+            <u><p><strong>Our Mission</strong></u><br>We strive to provide high-quality, durable, and cost-effective products that empower our customers to bring their creative and professional projects to life. Our mission is to build lasting relationships by ensuring reliability, affordability, and exceptional service at every step.</p>
+            <u><p><strong>Our Values</strong></u><br> <strong>Quality</strong> We use the finest materials and cutting-edge technology to ensure every product meets the highest standards.<br> <strong>Integrity</strong> Transparency and honesty guide our interactions with customers and partners.<br> <strong>Innovation</strong> We continuously explore new techniques and products to stay ahead in the industry.<br> <strong>Customer-Centric</strong> Your satisfaction is our priority, and we are dedicated to addressing your unique needs.</p>
+            <u><p><strong>Why Choose Us?</strong></u><br>With years of experience and a dedicated team, HS PVC Enterprise stands out for its competitive pricing, fast delivery, and personalized support. Whether you're a small business owner, a large-scale printer, or a DIY enthusiast, we have the right solutions for you. Our products are designed to enhance durability, vibrancy, and versatility, making us the preferred choice for lamination and printing needs.</p>
+            <u><p><strong>Our Commitment</strong></u><br>We are committed to sustainability and excellence, ensuring our processes minimize environmental impact while maximizing value for our customers. Contact us today to explore how HS PVC Enterprise can support your next project, and let’s create something extraordinary together!</p>
+            <u><p><strong>Get in Touch</strong></u><br>Have questions or ready to place an order? Reach us at <a href="mailto:hspvcenterprise@gmail.com">hspvcenterprise@gmail.com</a> or call us at +91 8143254224.<br> We’re here to help!</p>
+        </div>
+    </div>
+
     <!-- Contact Overlay -->
     <div id="contact-overlay" class="overlay">
         <div class="overlay-content">
             <span class="close-btn" onclick="hideContactOverlay()">×</span>
             <h2>Contact Us</h2>
-            <p><strong>Contact Us Through Mail:</strong> hspvcenterprise@gmail.com</p>
-            <p><strong>Mobile Number:</strong> 8143254224</p>
+            <p><strong>Contact Us Through Mail:</strong> <a href="mailto:hspvcenterprise@gmail.com">hspvcenterprise@gmail.com</a></p>
+            <p><strong>Mobile Number:</strong> +91 8143254224</p>
         </div>
     </div>
 

@@ -33,7 +33,7 @@ function displayProducts(filteredProducts = products) {
             <p>₹${product.price}</p> <!-- Added currency symbol -->
             <div class="quantity-container">
                 <button class="quantity-btn" onclick="decreaseQuantity(this)">-</button>
-                <span class="quantity-display">1</span>
+                <span class="quantity-display">0</span> <!-- Default value set to 0 -->
                 <button class="quantity-btn" onclick="increaseQuantity(this)">+</button>
             </div>
             <button class="buy-btn" onclick="addToCart('${product.name}', this)">Add to Cart</button>
@@ -45,13 +45,19 @@ function displayProducts(filteredProducts = products) {
 // Quantity management functions
 function increaseQuantity(button) {
     let quantity = button.previousElementSibling;
-    quantity.textContent = parseInt(quantity.textContent) + 1;
+    let currentValue = parseInt(quantity.textContent);
+    if (currentValue === 0) {
+        quantity.textContent = 1; // Change to 1 when + is clicked from 0
+    } else {
+        quantity.textContent = currentValue + 1; // Increment further if already > 0
+    }
 }
 
 function decreaseQuantity(button) {
     let quantity = button.nextElementSibling;
-    if (parseInt(quantity.textContent) > 1) {
-        quantity.textContent = parseInt(quantity.textContent) - 1;
+    let currentValue = parseInt(quantity.textContent);
+    if (currentValue > 0) {
+        quantity.textContent = currentValue - 1;
     }
 }
 
@@ -60,10 +66,12 @@ let cartCount = 0;
 
 function addToCart(productName, button) {
     let quantity = button.parentElement.querySelector('.quantity-display').textContent;
-    let itemsTextarea = document.getElementById('items');
-    itemsTextarea.value += `${productName} - Quantity: ${quantity}\n`;
-    cartCount += parseInt(quantity); // Increment cart count by the quantity
-    document.getElementById('cart-count').textContent = cartCount; // Update the cart count display
+    if (parseInt(quantity) > 0) { // Only add to cart if quantity is greater than 0
+        let itemsTextarea = document.getElementById('items');
+        itemsTextarea.value += `${productName} - Quantity: ${quantity}\n`;
+        cartCount += parseInt(quantity); // Increment cart count by the quantity
+        document.getElementById('cart-count').textContent = cartCount; // Update the cart count display
+    }
 }
 
 // Scroll to products section
@@ -109,6 +117,24 @@ function hideContactOverlay() {
     }
 }
 
+// About Us Overlay Functions
+function showAboutOverlay(event) {
+    event.preventDefault(); // Prevent default link behavior
+    const overlay = document.getElementById('about-overlay');
+    if (overlay) {
+        overlay.style.display = 'flex'; // Show overlay
+    } else {
+        console.error('About overlay element not found');
+    }
+}
+
+function hideAboutOverlay() {
+    const overlay = document.getElementById('about-overlay');
+    if (overlay) {
+        overlay.style.display = 'none'; // Hide overlay
+    }
+}
+
 // Handle form submission for WhatsApp
 document.getElementById('inquiry-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent default form submission
@@ -136,3 +162,8 @@ document.getElementById('inquiry-form').addEventListener('submit', function(even
 window.onload = function() {
     displayProducts(); // Load products on page load
 };
+
+// Placeholder for showCart function (to be implemented if needed)
+function showCart() {
+    console.log('Cart functionality to be implemented');
+}
