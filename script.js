@@ -34,6 +34,33 @@ const products = [
     { name: "Black 10ft 50m", price: 8610, image: "https://res.cloudinary.com/dxzpud3hq/image/upload/v1744370592/Black_u9flma.png", category: "Black" }
 ];
 
+// Cart management
+let cartItems = {};
+
+// Function to update the cart count and textarea
+function updateCart() {
+    const cartCountElement = document.getElementById('cart-count');
+    const itemsTextarea = document.getElementById('items');
+
+    // Calculate total quantity
+    let totalQuantity = 0;
+    for (let product in cartItems) {
+        if (cartItems[product] > 0) {
+            totalQuantity += cartItems[product];
+        }
+    }
+    cartCountElement.textContent = totalQuantity;
+
+    // Update textarea with current cart items
+    itemsTextarea.value = '';
+    for (let product in cartItems) {
+        if (cartItems[product] > 0) {
+            itemsTextarea.value += `${product} - Quantity: ${cartItems[product]}\n`;
+        }
+    }
+}
+
+// Function to search products
 function searchProducts() {
     const searchTerm = document.getElementById('product-search').value.toLowerCase();
     const filteredProducts = products.filter(product =>
@@ -42,6 +69,7 @@ function searchProducts() {
     displayProducts(filteredProducts);
 }
 
+// FAQ accordion functionality
 document.querySelectorAll('.faq-item h3').forEach(item => {
     item.addEventListener('click', () => {
         const p = item.nextElementSibling;
@@ -56,14 +84,15 @@ function displayProducts(filteredProducts = products) {
     filteredProducts.forEach(product => {
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
+        const quantity = cartItems[product.name] || 0;
         productCard.innerHTML = `
             <img src="${product.image}" alt="${product.name}" loading="lazy">
             <h3>${product.name}</h3>
             <p>₹${product.price}</p>
             <div class="quantity-container">
-                <button class="quantity-btn" onclick="decreaseQuantity(this)">-</button>
-                <span class="quantity-display">0</span>
-                <button class="quantity-btn" onclick="increaseQuantity(this)">+</button>
+                <button class="quantity-btn" onclick="decreaseQuantity(this, '${product.name}')">-</button>
+                <span class="quantity-display">${quantity}</span>
+                <button class="quantity-btn" onclick="increaseQuantity(this, '${product.name}')">+</button>
             </div>
             <button class="buy-btn" onclick="addToCart('${product.name}', this)">Add to Cart</button>
         `;
@@ -72,34 +101,45 @@ function displayProducts(filteredProducts = products) {
 }
 
 // Quantity management functions
-function increaseQuantity(button) {
-    let quantity = button.previousElementSibling;
-    let currentValue = parseInt(quantity.textContent);
-    if (currentValue === 0) {
-        quantity.textContent = 1;
-    } else {
-        quantity.textContent = currentValue + 1;
+function increaseQuantity(button, productName) {
+    let quantityElement = button.previousElementSibling;
+    let currentValue = parseInt(quantityElement.textContent);
+    let newValue = currentValue + 1;
+    quantityElement.textContent = newValue;
+
+    // Update cart
+    if (!cartItems[productName]) {
+        cartItems[productName] = 0;
     }
+    cartItems[productName] = newValue;
+    updateCart();
 }
 
-function decreaseQuantity(button) {
-    let quantity = button.nextElementSibling;
-    let currentValue = parseInt(quantity.textContent);
+function decreaseQuantity(button, productName) {
+    let quantityElement = button.nextElementSibling;
+    let currentValue = parseInt(quantityElement.textContent);
     if (currentValue > 0) {
-        quantity.textContent = currentValue - 1;
+        let newValue = currentValue - 1;
+        quantityElement.textContent = newValue;
+
+        // Update cart
+        if (!cartItems[productName]) {
+            cartItems[productName] = 0;
+        }
+        cartItems[productName] = newValue;
+        updateCart();
     }
 }
 
-// Cart management
-let cartCount = 0;
-
+// Add to cart function
 function addToCart(productName, button) {
-    let quantity = button.parentElement.querySelector('.quantity-display').textContent;
-    if (parseInt(quantity) > 0) {
-        let itemsTextarea = document.getElementById('items');
-        itemsTextarea.value += `${productName} - Quantity: ${quantity}\n`;
-        cartCount += parseInt(quantity);
-        document.getElementById('cart-count').textContent = cartCount;
+    let quantity = parseInt(button.parentElement.querySelector('.quantity-display').textContent);
+    if (quantity > 0) {
+        if (!cartItems[productName]) {
+            cartItems[productName] = 0;
+        }
+        cartItems[productName] = quantity;
+        updateCart();
     }
 }
 
@@ -107,6 +147,16 @@ function addToCart(productName, button) {
 function scrollToProducts() {
     document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
     displayProducts();
+}
+
+// Go to Home section (Homepage)
+function goToHome() {
+    const heroSection = document.getElementById('hero');
+    if (heroSection) {
+        heroSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        console.error('Hero section not found');
+    }
 }
 
 // Show specific section
@@ -180,8 +230,9 @@ document.getElementById('inquiry-form').addEventListener('submit', function(even
 
     this.reset();
     document.getElementById('items').value = '';
-    cartCount = 0;
-    document.getElementById('cart-count').textContent = cartCount;
+    cartItems = {};
+    updateCart();
+    displayProducts();
 });
 
 // Initial load
@@ -189,9 +240,14 @@ window.onload = function() {
     displayProducts();
 };
 
-// Placeholder for showCart function
+// Show cart function - Scroll to Data & Selected Products section
 function showCart() {
-    console.log('Cart functionality to be implemented');
+    const inquirySection = document.getElementById('inquiry');
+    if (inquirySection) {
+        inquirySection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        console.error('Inquiry section not found');
+    }
 }
 
 // Toggle Menu Function
